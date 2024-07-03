@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>Welcome to My Flask App</h1>
+        <p>
+            <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}" role="button">Login</a>
+            <a class="btn btn-secondary btn-lg" href="{{ url_for('register') }}" role="button">Register</a>
+        </p>
+    </div>
+{% endblock %}
+

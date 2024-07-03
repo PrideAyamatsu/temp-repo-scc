@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Vendor Dashboard</h2>
+    <p>Welcome, {{ session['username'] }}!</p>
+    <a href="{{ url_for('home') }}" class="btn btn-primary">Home</a>
+{% endblock %}

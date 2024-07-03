@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Hospital Dashboard</h2>
+    <p>Welcome, {{ session['username'] }}!</p>
+    <div class="row">
+        <!-- Orders Section -->
+        <div class="col-md-6">
+            <h3>Current Orders</h3>
+            {% if current_orders %}
+                {% for order in current_orders %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ order.item }}</h5>
+                            <p class="card-text">Amount: ${{ order.amount }}</p>
+                            <p class="card-text">Vendor: {{ order.vendor_username }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No current orders.</p>
+            {% endif %}
+            <h3>Past Orders</h3>
+            {% if past_orders %}
+                {% for order in past_orders %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ order.item }}</h5>
+                            <p class="card-text">Amount: ${{ order.amount }}</p>
+                            <p class="card-text">Vendor: {{ order.vendor_username }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No past orders.</p>
+            {% endif %}
+        </div>
+
+        <!-- Order Form Section -->
+        <div class="col-md-6">
+            <h3>Place a New Order</h3>
+            <form method="POST" action="{{ url_for('hospital_dashboard') }}">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.item.label }}
+                    {{ form.item(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.amount.label }}
+                    {{ form.amount(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.vendor.label }}
+                    {{ form.vendor(class="form-control") }}
+                </div>
+                <button type="submit" class="btn btn-primary">Place Order</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

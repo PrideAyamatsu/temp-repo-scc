@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h2>Welcome, {{ username }}</h2>
+    <p>Your service type: {{ user_type }}</p>
+    {% if user_type == 'hospital' %}
+        <a href="{{ url_for('hospital_page') }}" class="btn btn-info">Go to Hospital Page</a>
+    {% elif user_type == 'vendor' %}
+        <a href="{{ url_for('vendor_page') }}" class="btn btn-info">Go to Vendor Page</a>
+    {% elif user_type == 'delivery' %}
+        <a href="{{ url_for('delivery_page') }}" class="btn btn-info">Go to Delivery Organization Page</a>
+    {% endif %}
+{% endblock %}
